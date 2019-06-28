@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  php_container:
+    build:
+      context: .
+      dockerfile: ./container/Dockerfile
+    container_name: php_container
+    volumes:
+      - .:/var/www/app
+      - ./container/apache.conf:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - 3000:80
+    depends_on: 
+      - db_container
+  db_container:
+    container_name: db_container
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
