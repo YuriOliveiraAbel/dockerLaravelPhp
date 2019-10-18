@@ -16,7 +16,7 @@
 5. Mapear o caminho do public do projeto no arquivo apache.conf dentro da pasta container.
 
 6. Rebuidar o container:
-    docker-compose stop db_container php_container
+    docker stop db_container php_container
     docker-compose rm -v
     docker-compose up -d --build
     
